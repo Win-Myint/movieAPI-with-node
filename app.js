@@ -1,11 +1,15 @@
 var express = require('express');
 var app     = express();
-
-app.set('view engine', 'ejs');
+var request = require('request');
 
 app.get('/', function(req, res) {
-	res.send("hello world");
-})
+	request('http://www.omdbapi.com/?t=breaking+bad', function(error, response, body) {
+		if(!error && response.statusCode == 200) {
+			var result = JSON.parse(body);
+			res.send(result);
+		}
+	});
+});
 
 app.listen(3000, function() {
 	console.log("listening to port 3000!");
