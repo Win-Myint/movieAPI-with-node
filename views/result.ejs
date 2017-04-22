@@ -1,3 +1,5 @@
 <p>The result from api search is as below!<p>
 
-<%= data %>
+<% data['Search'].forEach(function(movies) { %>
+	<li><%= movies['Title'] %></li>
+<% }) %>
